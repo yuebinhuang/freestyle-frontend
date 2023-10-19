@@ -121,6 +121,12 @@ class Routes {
     return await Responses.friendRequests(await Friend.getRequests(user));
   }
 
+  @Router.get("/friend/pending")
+  async getPending(session: WebSessionDoc) {
+    const user = WebSession.getUser(session);
+    return await Responses.friendRequests(await Friend.getPending(user))
+  }
+
   @Router.post("/friend/requests/:to")
   async sendFriendRequest(session: WebSessionDoc, to: string) {
     const user = WebSession.getUser(session);
